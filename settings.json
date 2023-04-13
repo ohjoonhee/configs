@@ -1,124 +1,94 @@
 {
     "workbench.colorTheme": "One Dark Pro",
+    "oneDarkPro.editorTheme": "Nord",
     "workbench.iconTheme": "material-icon-theme",
+    "editor.smoothScrolling": true,
+    "editor.selectionHighlight": false,
+    // config on temp
+    "workbench.activityBar.visible": false,
+    "editor.minimap.enabled": false,
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.scrollbar.horizontal": "hidden",
+    "files.autoSave": "afterDelay",
+    // "workbench.editor.showTabs": false,
+    // "workbench.editor.limit.enabled": true,
+    // Consider Removing
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "solid",
+    "explorer.compactFolders": false,
+    "explorer.autoReveal": false,
+    "workbench.colorCustomizations": {
+        // "statusBar.background": "#1976D2",
+        // "statusBar.noFolderBackground": "#1976D2",
+        // "statusBar.debuggingBackground": "#1976D2",
+        // "statusBar.foreground": "#434c5e",
+        "terminal.ansiBlack": "#282C34",
+        "terminal.ansiBrightBlack": "#282C34",
+        "terminal.ansiRed": "#E26B73",
+        "terminal.ansiBrightRed": "#E26B73",
+        "terminal.ansiGreen": "#96C475",
+        "terminal.ansiBrightGreen": "#96C475",
+        "terminal.ansiYellow": "#D29B61",
+        "terminal.ansiBrightYellow": "#D29B61",
+        "terminal.ansiBlue": "#5DAEF2",
+        "terminal.ansiBrightBlue": "#5BAEF2",
+        "terminal.ansiMagenta": "#C775E0",
+        "terminal.ansiBrightMagenta": "#C775E0",
+        "terminal.ansiCyan": "#51B6C3",
+        "terminal.ansiBrightCyan": "#51B6C3",
+        "terminal.ansiWhite": "#ABB2BF",
+        "terminal.ansiBrightWhite": "#ABB2BF",
+        // "terminal.background": "#282C34",
+        // "terminal.foreground": "#abb2bf",
+        "[One Dark Pro]": {
+            "editorSuggestWidget.selectedForeground": "#FFFFFF",
+            "quickInputList.focusBackground": "#434C5E",
+            "quickInputList.focusForeground": "#FFFFFF",
+            "editor.selectionBackground": "#544d7b"
+            // #2E3440
+            // #84B8C9
+        }
+    },
     "editor.fontFamily": "Consolas, D2Coding, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
     "editor.lineNumbers": "relative",
     "editor.scrollBeyondLastLine": false,
-
+    // neovim settings
+    // "vscode-neovim.neovimClean": true,
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    // "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.vim",
+    "vscode-neovim.mouseSelectionStartVisualMode": true,
+    // editor settings (e.g. formatting, suggestion)
+    "editor.wordBasedSuggestions": false,
+    "editor.formatOnSave": true,
+    "editor.suggest.insertMode": "replace",
+    // terminal settings (i.e. tmux)
+    "terminal.integrated.profiles.linux": {
+        "tmux": {
+            "path": "/usr/bin/tmux",
+            "args": [
+                "new-session",
+                "-A",
+                "-s",
+                "vscode-${workspaceFolderBasename}"
+            ],
+        },
+    },
+    "terminal.integrated.defaultProfile.linux": "tmux",
+    "terminal.integrated.fontFamily": "Consolas, D2Coding, Monaco, 'Courier New', monospace",
+    // language specific settings
+    // python
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    // c, c++
     "C_Cpp.default.cStandard": "c17",
     "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, SpaceBeforeParens: Never, AccessModifierOffset: -4 }",
     "C_Cpp.clang_format_sortIncludes": false,
-    "python.formatting.provider": "black",
-    // "python.formatting.blackPath": "/Users/joonhee/.pyenv/shims/black",
-    "verilog-format.path": "/opt/verilog-format/verilog-format",
-    "verilog.linting.linter": "iverilog",
-    "[verilog]": {
-        "editor.formatOnSave": false
-    },
-    "[markdown]": {
-        "editor.unicodeHighlight.ambiguousCharacters": false,
-        "editor.unicodeHighlight.invisibleCharacters": false,
-        "editor.wordWrap": "on",
-        "editor.quickSuggestions": {
-            "comments": "off",
-            "strings": "off",
-            "other": "off"
-        },
-        "files.trimTrailingWhitespace": false
-    },
-    "[makefile]": {
-        "editor.insertSpaces": false,
-        "editor.detectIndentation": false
-    },
-    "[cpp]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools",
-        "editor.formatOnSave": true
-    },
-    "[c]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools",
-        "editor.formatOnSave": true
-    },
-    "[python]": {
-        "editor.wordBasedSuggestions": false,
-        "editor.formatOnSave": true
-    },
-    "[dart]": {
-        "editor.defaultFormatter": "Dart-Code.dart-code",
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": false,
-        "editor.suggest.insertMode": "replace",
-        "editor.formatOnSave": true
-    },
-    "[html]": {
-        "editor.suggest.insertMode": "replace",
-        "editor.formatOnSave": false,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[css]": {
-        "editor.suggest.insertMode": "replace",
-        "editor.formatOnSave": true
-    },
-    "css.completion.completePropertyWithSemicolon": false,
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-    },
-    "[javascriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-    },
-    "[json]": {
-        "editor.quickSuggestions": {
-            "strings": true
-        },
-        "editor.suggest.insertMode": "replace",
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-    },
-    "[jsonc]": {
-        "editor.quickSuggestions": {
-            "strings": true
-        },
-        "editor.suggest.insertMode": "replace",
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-    },
-    "[matlab]": {
-        "editor.formatOnSave": true
-    },
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
-    },
-
-    "prettier.trailingComma": "es5",
-    "prettier.tabWidth": 4,
-    "prettier.printWidth": 120,
-    // "prettier.useTabs": true,
-
-    "editor.acceptSuggestionOnCommitCharacter": false,
-    // "emmet.triggerExpansionOnTab": true,
-    // "emmet.showSuggestionsAsSnippets": true,
-    // "editor.snippetSuggestions": "top",
-
-    "matlab.mlintpath": "/Applications/MATLAB_R2021b.app/bin/maci64/mlint",
-    "files.associations": { "*.m": "matlab" },
-
+    // code-runner settings
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true,
-    "code-runner.languageIdToFileExtensionMap": {
-        "bat": ".bat",
-        "powershell": ".ps1",
-        "typescript": ".ts",
-        "verilog": ".v",
-        "matlab": ".m"
-    },
     "code-runner.executorMap": {
         "javascript": "node",
         "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
@@ -175,258 +145,8 @@
         "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "matlab": "matlab -nosplash -nodesktop -sd $dir -r \"run(./$fileName);\""
     },
-
-    // For Matlab Code-runner "| tail -n +11" can be added for slicing
-
-    // vscode-vim settings
-    "vim.easymotion": true,
-    "vim.replaceWithRegister": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": ["j", "j"],
-            "after": ["<Esc>"]
-        }
-    ],
-    "vim.normalModeKeyBindings": [
-        {
-            "before": ["L"],
-            "after": ["$"]
-        },
-        {
-            "before": ["H"],
-            "after": ["^"]
-        }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["J"],
-            "after": ["}"]
-        },
-        {
-            "before": ["K"],
-            "after": ["{"]
-        },
-        {
-            "before": ["<leader>", "w"],
-            "commands": ["workbench.action.files.save"]
-        },
-        {
-            "before": ["<leader>", "q"],
-            "commands": ["workbench.action.closeActiveEditor"]
-        },
-        {
-            "before": ["<leader>", "l"],
-            "commands": [":tabnext"]
-        },
-        {
-            "before": ["<leader>", "h"],
-            "commands": [":tabprev"]
-        },
-        {
-            "before": ["<leader>", "/"],
-            "commands": [":noh"]
-        },
-        {
-            "before": ["<leader>", "p"],
-            "commands": ["workbench.action.showCommands"]
-        },
-        {
-            "before": ["<leader>", "o"],
-            "commands": ["workbench.action.gotoSymbol"]
-        },
-        {
-            "before": ["<leader>", "f"],
-            "commands": ["editor.action.formatDocument"]
-        },
-        {
-            "before": ["<leader>", "n"],
-            "commands": ["code-runner.run"]
-        },
-        {
-            "before": ["<leader>", "s"],
-            "after": ["<leader>", "<leader>", "s"]
-        },
-        {
-            "before": ["s"],
-            "after": ["<leader>", "<leader>", "2", "s"]
-        },
-        {
-            "before": ["<leader>", "g", "u"],
-            "after": ["g", "U", "i", "w"]
-        },
-        {
-            "before": ["<leader>", "j"],
-            "after": ["<leader>", "<leader>", "j"]
-        },
-        {
-            "before": ["<leader>", "k"],
-            "after": ["<leader>", "<leader>", "k"]
-        }
-    ],
-    "vim.operatorPendingModeKeyBindings": [
-        {
-            "before": ["L"],
-            "after": ["$"]
-        },
-        {
-            "before": ["H"],
-            "after": ["^"]
-        }
-    ],
-    "vim.leader": "<space>",
-    "vim.handleKeys": {
-        "<C-f>": false,
-        "<C-b>": false
-    },
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [">"],
-            "commands": ["editor.action.indentLines"]
-        },
-        {
-            "before": ["<"],
-            "commands": ["editor.action.outdentLines"]
-        },
-        // {
-        //     "before": ["p"],
-        //     "after": ["p", "g", "v", "y"]
-        // },
-        {
-            "before": ["<leader>", "s"],
-            "after": ["<leader>", "<leader>", "s"]
-        },
-        {
-            "before": ["s"],
-            "after": ["<leader>", "<leader>", "2", "s"]
-        },
-        {
-            "before": ["J"],
-            "after": ["}"]
-        },
-        {
-            "before": ["K"],
-            "after": ["{"]
-        },
-        {
-            "before": ["H"],
-            "after": ["^"]
-        },
-        {
-            "before": ["L"],
-            "after": ["$"]
-        }
-    ],
-    "vim.statusBarColorControl": true,
-    "vim.statusBarColors.normal": ["#1976D2", "#FFF"],
-    "vim.statusBarColors.insert": ["#388E3C", "#FFF"],
-    "vim.statusBarColors.visual": ["#512DA8", "#FFF"],
-    "vim.statusBarColors.visualline": ["#512DA8", "#FFF"],
-    "vim.statusBarColors.visualblock": ["#EF4566", "#FFF"],
-    "vim.statusBarColors.replace": "#D08770",
-    "vim.statusBarColors.commandlineinprogress": "#00796B",
-    "vim.statusBarColors.searchinprogressmode": "#00796B",
-    "vim.statusBarColors.easymotionmode": "#00796B",
-    "vim.statusBarColors.easymotioninputmode": "#00796B",
-    "vim.statusBarColors.surroundinputmode": "#00796B",
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#1976D2",
-        "statusBar.noFolderBackground": "#1976D2",
-        "statusBar.debuggingBackground": "#1976D2",
-        "statusBar.foreground": "#FFF",
-        "terminal.ansiBlack": "#282C34",
-        "terminal.ansiBrightBlack": "#282C34",
-        "terminal.ansiRed": "#E26B73",
-        "terminal.ansiBrightRed": "#E26B73",
-        "terminal.ansiGreen": "#96C475",
-        "terminal.ansiBrightGreen": "#96C475",
-        "terminal.ansiYellow": "#D29B61",
-        "terminal.ansiBrightYellow": "#D29B61",
-        "terminal.ansiBlue": "#5DAEF2",
-        "terminal.ansiBrightBlue": "#5BAEF2",
-        "terminal.ansiMagenta": "#C775E0",
-        "terminal.ansiBrightMagenta": "#C775E0",
-        "terminal.ansiCyan": "#51B6C3",
-        "terminal.ansiBrightCyan": "#51B6C3",
-        "terminal.ansiWhite": "#ABB2BF",
-        "terminal.ansiBrightWhite": "#ABB2BF",
-        // "terminal.background": "#282C34",
-        // "terminal.foreground": "#abb2bf",
-        "[One Dark Pro]": {
-            "editorSuggestWidget.selectedForeground": "#FFFFFF",
-            "quickInputList.focusBackground": "#434C5E",
-            "quickInputList.focusForeground": "#FFFFFF",
-            // "editor.lineHighlightBackground": "#3B4252",
-            // "editor.lineHighlightBackground": "#343B50",
-            "editor.selectionBackground": "#544d7b"
-            // #2E3440
-            // #84B8C9
-        }
-    },
-
-    "terminal.integrated.fontFamily": "MesloLGS NF",
-    // "terminal.integrated.shell.osx": "/bin/zsh",
-    "terminal.integrated.profiles.osx": {
-        "bash": {
-            "path": "bash",
-            "args": ["-l"],
-            "icon": "terminal-bash"
-        },
-        "zsh": {
-            "path": "/bin/zsh",
-            "args": ["-l"]
-        },
-        "fish": {
-            "path": "fish",
-            "args": ["-l"]
-        },
-        "tmux": {
-            "path": "tmux",
-            "icon": "terminal-tmux"
-        },
-        "pwsh": {
-            "path": "pwsh",
-            "icon": "terminal-powershell"
-        }
-    },
-    "terminal.integrated.defaultProfile.osx": "zsh",
-    "terminal.integrated.inheritEnv": false,
-
-    "open-in-browser.default": "chrome",
-    "oneDarkPro.editorTheme": "Nord",
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.languageServer": "Pylance",
-
-    "workbench.list.keyboardNavigation": "filter",
-    "workbench.list.automaticKeyboardNavigation": false,
-
-    // vscode-nvim settings
-    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
-    "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.vim",
-    "vscode-neovim.mouseSelectionStartVisualMode": true,
-
-    "whichkey.bindingOverrides": [
-        {
-            "keys": "w",
-            "position": -1
-        }
-    ],
+    // whichkey settings
     "whichkey.bindings": [
-        // {
-        //     "key": " ",
-        //     "name": "Commands",
-        //     "type": "command",
-        //     "command": "workbench.action.showCommands"
-        // },
-        // {
-        //     "key": "\t",
-        //     "name": "Last editor",
-        //     "type": "commands",
-        //     "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup", "list.select"]
-        // },
         {
             "key": "b",
             "name": "+Buffers/Editors",
@@ -451,25 +171,25 @@
                     "command": "workbench.action.closeActiveEditor"
                 },
                 {
-                    "key": "H",
+                    "key": "h",
                     "name": "Move editor into left group",
                     "type": "command",
                     "command": "workbench.action.moveEditorToLeftGroup"
                 },
                 {
-                    "key": "J",
+                    "key": "j",
                     "name": "Move editor into below group",
                     "type": "command",
                     "command": "workbench.action.moveEditorToBelowGroup"
                 },
                 {
-                    "key": "K",
+                    "key": "k",
                     "name": "Move editor into above group",
                     "type": "command",
                     "command": "workbench.action.moveEditorToAboveGroup"
                 },
                 {
-                    "key": "L",
+                    "key": "l",
                     "name": "Move editor into right group",
                     "type": "command",
                     "command": "workbench.action.moveEditorToRightGroup"
@@ -508,13 +228,20 @@
                     "key": "P",
                     "name": "Paste clipboard to buffer",
                     "type": "commands",
-                    "commands": ["editor.action.selectAll", "editor.action.clipboardPasteAction"]
+                    "commands": [
+                        "editor.action.selectAll",
+                        "editor.action.clipboardPasteAction"
+                    ]
                 },
                 {
                     "key": "Y",
                     "name": "Copy buffer to clipboard",
                     "type": "commands",
-                    "commands": ["editor.action.selectAll", "editor.action.clipboardCopyAction", "cancelSelection"]
+                    "commands": [
+                        "editor.action.selectAll",
+                        "editor.action.clipboardCopyAction",
+                        "cancelSelection"
+                    ]
                 }
             ]
         },
@@ -716,7 +443,10 @@
                     "key": "R",
                     "name": "Rename file",
                     "type": "commands",
-                    "commands": ["workbench.files.action.showActiveFileInExplorer", "renameFile"]
+                    "commands": [
+                        "workbench.files.action.showActiveFileInExplorer",
+                        "renameFile"
+                    ]
                 },
                 {
                     "key": "t",
@@ -1009,13 +739,13 @@
         //         }
         //     ]
         // },
-        {
-            "key": "s",
-            "name": "Easymotion",
-            "type": "command",
-            "command": "vscode-neovim.send",
-            "args": "\\\\s"
-        },
+        // {
+        //     "key": "s",
+        //     "name": "Easymotion",
+        //     "type": "command",
+        //     "command": "vscode-neovim.send",
+        //     "args": "\\\\s"
+        // },
         {
             "key": "S",
             "name": "+Show",
@@ -1133,25 +863,25 @@
                 }
             ]
         },
-        {
-            "key": "t",
-            "name": "+Move Tab",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "l",
-                    "name": "Move Editor into Next Group",
-                    "type": "command",
-                    "command": "workbench.action.moveEditorToNextGroup"
-                },
-                {
-                    "key": "h",
-                    "name": "Move Editor into Previous Group",
-                    "type": "command",
-                    "command": "workbench.action.moveEditorToPreviousGroup"
-                }
-            ]
-        },
+        // {
+        //     "key": "t",
+        //     "name": "+Move Tab",
+        //     "type": "bindings",
+        //     "bindings": [
+        //         {
+        //             "key": "l",
+        //             "name": "Move Editor into Next Group",
+        //             "type": "command",
+        //             "command": "workbench.action.moveEditorRightInGroup"
+        //         },
+        //         {
+        //             "key": "h",
+        //             "name": "Move Editor into Previous Group",
+        //             "type": "command",
+        //             "command": "workbench.action.moveEditorLeftInGroup"
+        //         }
+        //     ]
+        // },
         {
             "key": "T",
             "name": "+UI toggles",
@@ -1172,8 +902,6 @@
                 {
                     "key": "F",
                     "name": "Toggle full screen",
-                    "type": "command",
-                    "command": "workbench.action.toggleFullScreen"
                 },
                 {
                     "key": "s",
@@ -1208,7 +936,7 @@
             ]
         },
         {
-            "key": "w",
+            "key": "W",
             "name": "+Window",
             "type": "bindings",
             "bindings": [
@@ -1335,7 +1063,7 @@
             ]
         },
         {
-            "key": "x",
+            "key": "t",
             "name": "+Text",
             "type": "bindings",
             "bindings": [
@@ -1689,38 +1417,15 @@
                 }
             ]
         },
-        // {
-        //     "key": "/",
-        //     "name": "Search in a project",
-        //     "type": "command",
-        //     "command": "workbench.action.findInFiles"
-        // },
         {
             "key": "*",
             "name": "Search in a project with a selection",
             "type": "commands",
-            "commands": ["editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles"]
+            "commands": [
+                "editor.action.addSelectionToNextFindMatch",
+                "workbench.action.findInFiles"
+            ]
         },
-        // {
-        //     "key": "v",
-        //     "name": "Smart select/expand region",
-        //     "type": "transient",
-        //     "command": "editor.action.smartSelect.grow",
-        //     "bindings": [
-        //         {
-        //             "key": "v",
-        //             "name": "Grow selection",
-        //             "type": "command",
-        //             "command": "editor.action.smartSelect.grow"
-        //         },
-        //         {
-        //             "key": "V",
-        //             "name": "Shrink selection",
-        //             "type": "command",
-        //             "command": "editor.action.smartSelect.shrink"
-        //         }
-        //     ]
-        // },
         {
             "key": "o",
             "name": "Goto Symbol",
@@ -1733,80 +1438,33 @@
             "type": "command",
             "command": "workbench.action.files.save"
         },
-        // {
-        //     "key": "N",
-        //     "name": "Run Custom Command",
-        //     "type": "command",
-        //     "command": "code-runner.runCustomCommand"
-        // },
         {
             "key": "n",
             "name": "Run Code",
             "type": "command",
             "command": "code-runner.run"
         },
-        // {
-        //     "key": "h",
-        //     "name": "Previous Tab",
-        //     "type": "command",
-        //     "command": "vscode-neovim.send",
-        //     "args": "<S-Tab>"
-        // },
-        // {
-        //     "key": "l",
-        //     "name": "Next Tab",
-        //     "type": "command",
-        //     "command": "vscode-neovim.send",
-        //     "args": "<Tab>"
-        // },
         {
             "key": "/",
             "name": "Unhighlight",
             "type": "command",
             "command": "vscode-neovim.send",
             "args": ":noh\n"
-        }
-        // {
-        //     "key": "1",
-        //     "name": "Focus 1st editor group",
-        //     "type": "command",
-        //     "command": "workbench.action.focusFirstEditorGroup"
-        // },
-        // {
-        //     "key": "2",
-        //     "name": "Focus 2nd editor group",
-        //     "type": "command",
-        //     "command": "workbench.action.focusSecondEditorGroup"
-        // },
-        // {
-        //     "key": "3",
-        //     "name": "Focus 3rd editor group",
-        //     "type": "command",
-        //     "command": "workbench.action.focusThirdEditorGroup"
-        // },
-        // {
-        //     "key": "4",
-        //     "name": "Focus 4th editor group",
-        //     "type": "command",
-        //     "command": "workbench.action.focusFourthEditorGroup"
-        // }
+        },
     ],
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+    "git.autofetch": true,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "redhat.telemetry.enabled": false,
+    "[python]": {
+        "editor.formatOnType": true
     },
-    "jupyter.alwaysTrustNotebooks": true,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": false,
+        "markdown": false,
+        "cpp": false,
+        "c": false
     },
-    "security.workspace.trust.untrustedFiles": "open",
-    "workbench.startupEditor": "none",
-    "git.suggestSmartCommit": false,
-    "jupyter.askForKernelRestart": false,
-
-    // Arduino Configs
-    "arduino.path": "/Applications",
-    "arduino.commandPath": "Contents/MacOS/Arduino",
-    "sync.gist": "f66016e9e2435e41c0cf980f52199b1b"
 }
-
