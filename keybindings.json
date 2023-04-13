@@ -25,6 +25,11 @@
         "command": "workbench.view.explorer"
     },
     {
+        "key": "ctrl+shift+e",
+        "command": "workbench.files.action.showActiveFileInExplorer",
+        "when": "editorTextFocus"
+    },
+    {
         "key": "shift+cmd+e",
         "command": "-workbench.view.explorer"
     },
@@ -117,15 +122,15 @@
         "command": "cursorLeft",
         "when": "textInputFocus"
     },
-    {
-        "key": "ctrl+b",
-        "command": "-cursorLeft",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "ctrl+b",
-        "command": "extension.openInDefaultBrowser"
-    },
+    // {
+    //     "key": "ctrl+b",
+    //     "command": "-cursorLeft",
+    //     "when": "textInputFocus"
+    // },
+    // {
+    //     "key": "ctrl+b",
+    //     "command": "extension.openInDefaultBrowser"
+    // },
     {
         "key": "alt+b",
         "command": "-extension.openInDefaultBrowser"
@@ -135,18 +140,18 @@
         "command": "explorer.newFile"
     },
     {
-        "key": "d",
-        "command": "moveFileToTrash",
-        "when": "explorerResourceMoveableToTrash && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
-    },
-    {
         "key": "delete",
         "command": "-moveFileToTrash",
         "when": "explorerResourceMoveableToTrash && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
+    // {
+    //     "key": "e",
+    //     "command": "revealFileInOS",
+    //     "when": "!editorFocus && listFocus && !inputFocus"
+    // },
     {
         "key": "e",
-        "command": "revealFileInOS",
+        "command": "copyRelativeFilePath",
         "when": "!editorFocus && listFocus && !inputFocus"
     },
     // {
@@ -214,11 +219,11 @@
         "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
         "when": "inFilesPicker && inQuickOpen"
     },
-    {
-        "key": "shift+cmd+p",
-        "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
-        "when": "inFilesPicker && inQuickOpen"
-    },
+    // {
+    //     "key": "shift+cmd+p",
+    //     "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
+    //     "when": "inFilesPicker && inQuickOpen"
+    // },
     {
         "key": "shift+cmd+h",
         "command": "workbench.action.replaceInFiles"
@@ -281,7 +286,7 @@
     },
     {
         "key": "ctrl+t",
-        "command": "workbench.action.terminal.toggleTerminal",
+        "command": "workbench.action.terminal.focus",
         "when": "terminal.active"
     },
     {
@@ -303,69 +308,21 @@
         "key": "ctrl+g",
         "command": "git-graph.view"
     },
-    {
-        "key": "cmd+l",
-        "command": "opensshremotes.openEmptyWindowInCurrentWindow"
-    },
-
+    // {
+    //     "key": "cmd+l",
+    //     "command": "opensshremotes.openEmptyWindowInCurrentWindow"
+    // },
     // VSCodeVim explorer keybindings
-    {
-        "key": "h",
-        "command": "list.collapse",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "j",
-        "command": "list.focusDown",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "k",
-        "command": "list.focusUp",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "l",
-        "command": "list.select",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "o",
-        "command": "list.toggleExpand",
-        "when": "listFocus && !inputFocus"
-    },
     {
         "key": "/",
         "command": "list.toggleKeyboardNavigation",
         "when": "listFocus && !inputFocus && listSupportsKeyboardNavigation"
     },
     {
-        "key": "ctrl+d",
-        "command": "list.focusPageDown",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "ctrl+u",
-        "command": "list.focusPageUp",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "g g",
-        "command": "list.focusFirst",
-        "when": "listFocus && !inputFocus"
-    },
-    {
         "key": "ctrl+g",
         "command": "-workbench.action.gotoLine"
     },
-
     // vscode-neovim keybindings
-    {
-        "command": "vscode-neovim.compositeEscape1",
-        "key": "j",
-        "when": "neovim.mode==insert && editorFocus",
-        "args": "j"
-    },
     {
         "key": "ctrl+o",
         "command": "-lineBreakInsert",
@@ -415,21 +372,44 @@
     {
         "key": "tab",
         "command": "workbench.action.nextEditorInGroup",
-        "when": "!inputFocus"
+        "when": "editorTextFocus && neovim.mode != insert"
     },
     {
-        "key": "cmd+k alt+cmd+right",
-        "command": "-workbench.action.nextEditorInGroup"
+        "key": "tab",
+        "command": "workbench.action.nextEditorInGroup",
+        "when": "notebookCellListFocused && neovim.mode != insert"
     },
     {
         "key": "shift+tab",
         "command": "workbench.action.previousEditorInGroup",
-        "when": "!inputFocus"
+        "when": "editorTextFocus && neovim.mode != insert"
     },
     {
-        "key": "cmd+k alt+cmd+left",
-        "command": "-workbench.action.previousEditorInGroup"
-    }
+        "key": "shift+tab",
+        "command": "workbench.action.previousEditorInGroup",
+        "when": "notebookCellListFocused && neovim.mode != insert"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "vscode-neovim.send",
+        "args": "20j",
+        "when": "notebookEditorFocused && neovim.mode != insert"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "vscode-neovim.send",
+        "args": "20k",
+        "when": "notebookEditorFocused && neovim.mode != insert"
+    },
+    {
+        "key": "cmd+r",
+        "command": "workbench.action.reloadWindow",
+    },
+    {
+        "key": "cmd+r",
+        "command": "workbench.files.action.refreshFilesExplorer",
+        "when": "filesExplorerFocus"
+    },
     // {
     //     "key": "escape",
     //     "command": "-vscode-neovim.escape",
@@ -440,5 +420,120 @@
     //     "command": "-closeReferenceSearch",
     //     "when": "inReferenceSearchEditor && !config.editor.stablePeek && neovim.mode == 'normal'"
     // }
+    {
+        "command": "vscode-neovim.compositeEscape1",
+        "key": "j",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "j"
+    },
+    {
+        "command": "vscode-neovim.compositeEscape2",
+        "key": "k",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "k"
+    },
+    {
+        "command": "whichkey.show",
+        "key": "space",
+        "when": "neovim.mode == normal && editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.terminal.newWithProfile",
+    },
+    {
+        "key": "cmd+l",
+        "command": "cursorEnd",
+        "when": "neovim.mode == insert && editorTextFocus"
+    },
+    // keybindings for ipad
+    {
+        "key": "ctrl+backspace",
+        "command": "workbench.action.navigateLeft",
+        "when": "!inQuickOpen && !suggestWidgetVisible && neovim.mode != insert"
+    },
+    {
+        "key": "ctrl+.",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
+    },
+    // {
+    //     "key": "shift+2",
+    //     "command": "editor.action.rename",
+    //     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly && neovim.mode != insert"
+    // },
+    {
+        "key": "home",
+        "command": "workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "cmd+j",
+        "command": "commands.run",
+        "args": [
+            "workbench.action.navigateUp",
+            "workbench.action.togglePanel",
+        ],
+        "when": "!inQuickOpen && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+shift+o",
+        "command": "workbench.action.files.openFolder"
+    },
+    {
+        "key": "cmd+e",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "cmd+o",
+        "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated"
+    },
+    // {
+    //     "key": "ctrl+c",
+    //     "command": "search.action.cancel",
+    //     "when": "listFocus && searchViewletVisible && !inputFocus && searchState != '0'"
+    // },
+    // {
+    //     "key": "ctrl+c",
+    //     "command": "cancelRenameInput",
+    //     "when": "editorFocus && renameInputVisible"
+    // },
+    // {
+    //     "key": "ctrl+c",
+    //     "command": "workbench.action.closeQuickOpen",
+    //     "when": "inQuickOpen"
+    // },
+    // Since Blink shell change ctrl+c -> esc
+    {
+        "key": "escape",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0003"
+        },
+        "when": "terminalFocus",
+    },
+    // list config change to collapse sidebar visibility
+    {
+        "key": "l",
+        "command": "commands.run",
+        "args": [
+            "list.select",
+            "workbench.action.toggleSidebarVisibility",
+        ],
+        "when": "listFocus && !inputFocus && !explorerResourceIsFolder"
+    },
+    // tab moving
+    {
+        "key": "alt+tab",
+        "command": "workbench.action.moveEditorRightInGroup"
+    },
+    {
+        "key": "alt+shift+tab",
+        "command": "workbench.action.moveEditorLeftInGroup"
+    }
 ]
-
