@@ -25,12 +25,12 @@
         "command": "workbench.view.explorer"
     },
     {
-        "key": "ctrl+shift+e",
+        "key": "ctrl+e",
         "command": "workbench.files.action.showActiveFileInExplorer",
         "when": "editorTextFocus"
     },
     {
-        "key": "shift+cmd+e",
+        "key": "ctrl+shift+e",
         "command": "-workbench.view.explorer"
     },
     {
@@ -437,10 +437,10 @@
         "key": "space",
         "when": "neovim.mode == normal && editorTextFocus"
     },
-    {
-        "key": "ctrl+shift+t",
-        "command": "workbench.action.terminal.newWithProfile",
-    },
+    //{
+    //    "key": "ctrl+shift+t",
+    //   "command": "workbench.action.terminal.newWithProfile",
+    //},
     {
         "key": "cmd+l",
         "command": "cursorEnd",
@@ -467,8 +467,9 @@
         "command": "workbench.action.closeActiveEditor"
     },
     {
-        "key": "cmd+j",
-        "command": "commands.run",
+        "key": "ctrl+shift+t",
+	//required: Commands(extension)
+        "command": "commands.run", 
         "args": [
             "workbench.action.navigateUp",
             "workbench.action.togglePanel",
@@ -480,7 +481,7 @@
         "command": "workbench.action.files.openFolder"
     },
     {
-        "key": "cmd+e",
+        "key": "ctrl+alt+e",
         "command": "workbench.action.toggleSidebarVisibility"
     },
     {
