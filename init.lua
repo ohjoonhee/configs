@@ -1,33 +1,17 @@
-local Plug = vim.fn['plug#']
-vim.call("plug#begin")
-
--- For Both
-Plug('joshdick/onedark.vim')
-Plug('wellle/targets.vim')
-Plug('kana/vim-textobj-user')
-Plug('kana/vim-textobj-entire')
-Plug('michaeljsmith/vim-indent-object')
-Plug('kana/vim-textobj-line')
-Plug('tpope/vim-capslock')
--- Plug('inkarkat/vim-ReplaceWithRegister', {branch= 'stable'})
---Plug('tommcdo/vim-exchange')
-Plug('AndrewRadev/sideways.vim')
-Plug('lukelbd/vim-toggle')
-Plug('chaoren/vim-wordmotion')
-Plug('tpope/vim-repeat')
--- Plug 'ojroques/vim-oscyank', {'branch': 'main'}
-
-vim.call("plug#end")
-
-if not vim.g.vscode then
-    vim.cmd [[
-    colorscheme onedark
-    let g:airline_theme='onedark'
-    ]]
-end
 
 require("packer").startup(function(use)
    use "wbthomason/packer.nvim"
+   use "joshdick/onedark.vim"
+   use "wellle/targets.vim"
+   use "kana/vim-textobj-user"
+   use "kana/vim-textobj-entire"
+   use "kana/vim-textobj-line"
+   use "michaeljsmith/vim-indent-object"
+   use "tommcdo/vim-exchange"
+   use "AndrewRadev/sideways.vim"
+   use "lukelbd/vim-toggle"
+   use "chaoren/vim-wordmotion"
+   use "tpope/vim-repeat"
 
   -- Plugins for Neovim only
    use {
@@ -81,6 +65,14 @@ require("packer").startup(function(use)
       end
     })
 end)
+
+
+if not vim.g.vscode then
+    vim.cmd [[
+    colorscheme onedark
+    let g:airline_theme='onedark'
+    ]]
+end
 
 
 -- hop keybindings
@@ -166,13 +158,10 @@ set.ignorecase = true
 set.smartcase = true
 set.wildmode = "longest,list"
 set.jumpoptions = set.jumpoptions + "stack"
+set.clipboard = "unnamedplus"
 -- set clipboard=unnamed
 -- language en_US
 
--- Remote clipboard sync settings
--- autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif"
--- set clipboard& clipboard^=unnamed,unnamedplus
--- let g:oscyank_term = 'default'
 
 
 vim.cmd [[
