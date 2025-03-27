@@ -40,7 +40,7 @@
             "quickInputList.focusBackground": "#434C5E",
             "quickInputList.focusForeground": "#FFFFFF",
             "editor.selectionBackground": "#544d7b",
-            "statusBar.noFolderBackground": "#ff0000",
+            "statusBar.noFolderBackground": "#5c226b",
             // "#2E3440"
             // "#84B8C9"
         }
@@ -51,6 +51,11 @@
     "editor.scrollBeyondLastLine": false,
     // neovim settings
     "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape",
+        }
+    },
     // editor settings (e.g. formatting, suggestion)
     "editor.wordBasedSuggestions": "off",
     "editor.formatOnSave": true,
@@ -78,21 +83,25 @@
         "editor.formatOnType": true,
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
+    "black-formatter.args": [
+        "--line-length=200",
+    ],
     "python.formatting.provider": "none",
     "notebook.formatOnSave.enabled": true,
+    "notebook.scrolling.revealNextCellOnExecute": "firstLine",
     // c, c++
-    "C_Cpp.intelliSenseEngine": "disabled",
-    "C_Cpp.autocomplete": "disabled",
     "clangd.arguments": [
         "--header-insertion=never",
     ],
-    "lldb.verboseLogging": true,
-    "debug.inlineValues": "on",
-    // "C_Cpp.default.cStandard": "c17",
-    // "C_Cpp.default.cppStandard": "c++17",
-    // "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, SpaceBeforeParens: Never, AccessModifierOffset: -4 }",
+    // "lldb.verboseLogging": true,
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++11",
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, SpaceBeforeParens: Never, AccessModifierOffset: -4 }",
+    "C_Cpp.default.compilerPath": "/opt/homebrew/bin/g++-14",
+    "C_Cpp.default.includePath": [
+        "/opt/homebrew/Cellar/boost/1.86.0/include"
+    ],
     // "C_Cpp.clang_format_sortIncludes": false,
-    // "C_Cpp.default.compilerPath": "/opt/homebrew/bin/g++-13",
     // "C_Cpp.codeAnalysis.updateDelay": 500,
     // code-runner settings
     "code-runner.runInTerminal": true,
@@ -117,7 +126,7 @@
         "groovy": "groovy",
         "powershell": "powershell -ExecutionPolicy ByPass -File",
         "bat": "cmd /c",
-        "shellscript": "bash",
+        "shellscript": "cd $dir && bash",
         "fsharp": "fsi",
         "csharp": "scriptcs",
         "vbscript": "cscript //Nologo",
@@ -967,16 +976,16 @@
             ]
         },
         {
-            "key": "W",
+            "key": "v",
             "name": "+Window",
             "type": "bindings",
             "bindings": [
-                {
-                    "key": "W",
-                    "name": "Focus previous editor group",
-                    "type": "command",
-                    "command": "workbench.action.focusPreviousGroup"
-                },
+                // {
+                //     "key": "W",
+                //     "name": "Focus previous editor group",
+                //     "type": "command",
+                //     "command": "workbench.action.focusPreviousGroup"
+                // },
                 {
                     "key": "-",
                     "name": "Split editor below",
@@ -996,17 +1005,17 @@
                     "command": "workbench.action.splitEditorDown"
                 },
                 {
-                    "key": "v",
+                    "key": "l",
                     "name": "Split editor right",
                     "type": "command",
                     "command": "workbench.action.splitEditor"
                 },
-                {
-                    "key": "h",
-                    "name": "Move editor left",
-                    "type": "command",
-                    "command": "workbench.action.focusPreviousGroup"
-                },
+                // {
+                //     "key": "h",
+                //     "name": "Move editor left",
+                //     "type": "command",
+                //     "command": "workbench.action.focusPreviousGroup"
+                // },
                 {
                     "key": "j",
                     "name": "Move editor down",
@@ -1019,12 +1028,12 @@
                     "type": "command",
                     "command": "workbench.action.focusAboveGroup"
                 },
-                {
-                    "key": "l",
-                    "name": "Move editor right",
-                    "type": "command",
-                    "command": "workbench.action.focusNextGroup"
-                },
+                // {
+                //     "key": "l",
+                //     "name": "Move editor right",
+                //     "type": "command",
+                //     "command": "workbench.action.focusNextGroup"
+                // },
                 {
                     "key": "H",
                     "name": "Move editor group left",
@@ -1057,15 +1066,15 @@
                 },
                 {
                     "key": "m",
-                    "name": "Maximize editor group",
+                    "name": "Toggle maximize editor group",
                     "type": "command",
-                    "command": "workbench.action.minimizeOtherEditors"
+                    "command": "workbench.action.toggleMaximizeEditorGroup"
                 },
                 {
                     "key": "M",
                     "name": "Maximize editor group and hide side bar",
                     "type": "command",
-                    "command": "workbench.action.maximizeEditor"
+                    "command": "workbench.action.maximizeEditorHideSidebar"
                 },
                 {
                     "key": "=",
@@ -1074,10 +1083,16 @@
                     "command": "workbench.action.evenEditorWidths"
                 },
                 {
-                    "key": "z",
+                    "key": "c",
                     "name": "Combine all editors",
                     "type": "command",
                     "command": "workbench.action.joinAllGroups"
+                },
+                {
+                    "key": "z",
+                    "name": "Toggle word wrap",
+                    "type": "command",
+                    "command": "editor.action.toggleWordWrap"
                 },
                 {
                     "key": "d",
@@ -1085,12 +1100,12 @@
                     "type": "command",
                     "command": "workbench.action.closeEditorsInGroup"
                 },
-                {
-                    "key": "x",
-                    "name": "Close all editor groups",
-                    "type": "command",
-                    "command": "workbench.action.closeAllGroups"
-                }
+                // {
+                //     "key": "x",
+                //     "name": "Close all editor groups",
+                //     "type": "command",
+                //     "command": "workbench.action.closeAllGroups"
+                // }
             ]
         },
         {
@@ -1530,6 +1545,12 @@
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1,
     },
+    "latex-workshop.formatting.latex": "none",
+    "[latex]": {
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false,
+        "editor.formatOnType": false,
+    },
     // "latex-workshop.latex.tools": [
     //     {
     //         "name": "latexmk",
@@ -1546,12 +1567,48 @@
     //         "env": {}
     //     }
     // ],
-    "clangd.detectExtensionConflicts": false,
+    // "clangd.detectExtensionConflicts": false,
+    // gitlens settings
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "gitlens.hovers.enabled": false,
+    // verilog settings
     "[verilog]": {
-        "editor.wordBasedSuggestions": "currentDocument"
-    }
+        // "editor.wordBasedSuggestions": "currentDocument",
+    },
+    "verilog.linting.linter": "iverilog",
+    "verilog.ctags.path": "/opt/homebrew/bin/ctags",
+    "verilog.linting.iverilog.runAtFileLocation": true,
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        // "*.pdf": "pdf.preview"
+    },
+    "github.copilot.editor.enableAutoCompletions": true,
+    "interactiveWindow.executeWithShiftEnter": true,
+    "codesnap.containerPadding": "1em",
+    "codesnap.shutterAction": "copy",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Windows PowerShell": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
+    "window.openFilesInNewWindow": "default",
+    "security.promptForRemoteFileProtocolHandling": false,
 }

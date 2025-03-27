@@ -95,7 +95,7 @@
     },
     {
         "key": "shift+e",
-        "command": "revealFileInOS",
+        "command": "copyFilePath",
         "when": "!editorFocus && listFocus && !inputFocus"
     },
     // {
@@ -149,7 +149,7 @@
     {
         "key": "ctrl+shift+p",
         "command": "workbench.action.showCommands",
-        "when": "neovim.mode != visual"
+        // "when": "neovim.mode != visual"
     },
     {
         "key": "shift+cmd+p",
@@ -348,11 +348,6 @@
         "command": "workbench.action.reloadWindow",
     },
     // {
-    //     "key": "cmd+r",
-    //     "command": "workbench.files.action.refreshFilesExplorer",
-    //     "when": "filesExplorerFocus"
-    // },
-    // {
     //     "key": "escape",
     //     "command": "-vscode-neovim.escape",
     //     "when": "editorTextFocus && neovim.init && !markersNavigationVisible && !parameterHintsVisible && !referenceSearchVisible"
@@ -363,21 +358,9 @@
     //     "when": "inReferenceSearchEditor && !config.editor.stablePeek && neovim.mode == 'normal'"
     // }
     {
-        "command": "vscode-neovim.compositeEscape1",
-        "key": "j",
-        "when": "neovim.mode == insert && editorTextFocus",
-        "args": "j"
-    },
-    {
-        "command": "vscode-neovim.compositeEscape2",
-        "key": "k",
-        "when": "neovim.mode == insert && editorTextFocus",
-        "args": "k"
-    },
-    {
         "command": "whichkey.show",
         "key": "space",
-        "when": "(neovim.mode == normal || neovim.mode == visual) && editorTextFocus"
+        "when": "(((neovim.mode == normal || neovim.mode == visual) && editorTextFocus) || (!editorTextFocus && !inputFocus))"
     },
     {
         "key": "ctrl+shift+t",
@@ -485,16 +468,8 @@
         "when": "github.copilot.activated && github.copilot.panelVisible"
     },
     {
-        "key": "ctrl+cmd+i",
-        "command": "workbench.action.openChat.copilot"
-    },
-    {
         "key": "ctrl+shift+i",
         "command": "workbench.panel.chatSidebar.copilot"
-    },
-    {
-        "key": "ctrl+cmd+i",
-        "command": "-workbench.panel.chatSidebar.copilot"
     },
     {
         "key": "ctrl+cmd+l",
@@ -531,7 +506,12 @@
     {
         "key": "f",
         "command": "explorer.download",
-        "when": "listFocus && !inputFocus"
+        "when": "!editorFocus && listFocus && !inputFocus"
+    },
+    {
+        "key": "shift+f",
+        "command": "revealFileInOS",
+        "when": "!editorFocus && listFocus && !inputFocus"
     },
     // Replace ctrl+c to esc project
     // {
@@ -889,5 +869,54 @@
         "key": "cmd+shift+v",
         "command": "latex-workshop.view",
         "when": "!config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/"
+    },
+    {
+        "key": "cmd+shift+v",
+        "command": "markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+        "key": "shift+cmd+v",
+        "command": "-markdown.showPreview",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+cmd+i",
+        "command": "-workbench.action.chat.open"
+    },
+    {
+        "key": "ctrl+cmd+i",
+        "command": "workbench.action.chat.openInEditor"
+    },
+    {
+        "key": "ctrl+cmd+w",
+        "command": "workbench.action.closeWindow"
+    },
+    {
+        "key": "shift+cmd+w",
+        "command": "-workbench.action.closeWindow"
+    },
+    {
+        "key": "ctrl+alt+right",
+        "command": "-cursorWordPartRight",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+alt+right",
+        "command": "-quickInput.acceptInBackground",
+        "when": "cursorAtEndOfQuickInputBox && inQuickInput && quickInputType == 'quickPick' || inQuickInput && !inputFocus && quickInputType == 'quickPick'"
+    },
+    {
+        "key": "ctrl+alt+left",
+        "command": "-cursorWordPartLeft",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+cmd+j",
+        "command": "workbench.action.moveEditorToBelowGroup"
+    },
+    {
+        "key": "ctrl+cmd+k",
+        "command": "workbench.action.moveEditorToAboveGroup"
     }
 ]
