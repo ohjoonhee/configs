@@ -56,6 +56,9 @@
             "command": "vscode-neovim.escape",
         }
     },
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": true
+    },
     // editor settings (e.g. formatting, suggestion)
     "editor.wordBasedSuggestions": "off",
     "editor.formatOnSave": true,
@@ -126,7 +129,7 @@
         "groovy": "groovy",
         "powershell": "powershell -ExecutionPolicy ByPass -File",
         "bat": "cmd /c",
-        "shellscript": "cd $dir && bash",
+        "shellscript": "cd $workspaceRoot && bash $fullFileName",
         "fsharp": "fsi",
         "csharp": "scriptcs",
         "vbscript": "cscript //Nologo",
@@ -165,6 +168,7 @@
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "redhat.telemetry.enabled": false,
     "editor.inlineSuggest.enabled": true,
+    "chat.commandCenter.enabled": false,
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
