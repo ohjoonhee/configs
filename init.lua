@@ -1,71 +1,146 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system(
+        {
+            "git",
+            "clone",
+            "--filter=blob:none",
+            "https://github.com/folke/lazy.nvim.git",
+            "--branch=stable", -- latest stable release
+            lazypath
+        }
+    )
+end
+vim.opt.rtp:prepend(lazypath)
 
-require("packer").startup(function(use)
-   use "wbthomason/packer.nvim"
-   use "joshdick/onedark.vim"
-   use "wellle/targets.vim"
-   use "kana/vim-textobj-user"
-   use "kana/vim-textobj-entire"
-   use "kana/vim-textobj-line"
-   use "michaeljsmith/vim-indent-object"
-   use "tommcdo/vim-exchange"
-   use "AndrewRadev/sideways.vim"
-   use "lukelbd/vim-toggle"
-   use "chaoren/vim-wordmotion"
-   use "tpope/vim-repeat"
-
-  -- Plugins for Neovim only
-   use {
-       "psliwka/vim-smoothie",
-       cond = function() return not vim.g.vscode end
-   }
-   use {
-       "vim-airline/vim-airline",
-       cond = function() return not vim.g.vscode end
-   }
-   use {
-       "sheerun/vim-polyglot",
-       cond = function() return not vim.g.vscode end
-   }
-   use {
-       "scrooloose/nerdtree",
-       cond = function() return not vim.g.vscode end
-   }
-   use {
-       "ryanoasis/vim-devicons",
-       cond = function() return not vim.g.vscode end
-   }
-   use {
-       "williamboman/mason.nvim",
-       cond = function() return not vim.g.vscode end
-   }
-
-   -- Plugins for Both Neovim and VSCode
-   use {
-       "phaazon/hop.nvim",
-       branch = "v2",
-       config = function()
-           require("hop").setup({ keys = "asdghklqwertyuiopzxcvbnmfj;" })
-       end
-   }
-   use({
-        "kylechui/nvim-surround",
-        tag = "*",
-        config = function()
-            require("nvim-surround").setup()
-        end
-    })
-    use({
-      "gbprod/substitute.nvim",
-      config = function()
-        require("substitute").setup({
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        })
-      end
-    })
-end)
-
+require("lazy").setup({
+        "joshdick/onedark.vim",
+        "wellle/targets.vim",
+        "kana/vim-textobj-user",
+        {
+            "kana/vim-textobj-entire",
+            dependencies = {
+                "kana/vim-textobj-user"
+            }
+        },
+        {
+            "kana/vim-textobj-line",
+            dependencies = {
+                "kana/vim-textobj-user"
+            }
+        },
+        "michaeljsmith/vim-indent-object",
+        "AndrewRadev/sideways.vim",
+        "lukelbd/vim-toggle",
+        "chaoren/vim-wordmotion",
+        "tpope/vim-repeat",
+        {
+          "gbprod/yanky.nvim",
+          dependencies = {
+            { "kkharji/sqlite.lua" }
+          },
+          opts = {
+            ring = { storage = "sqlite" },
+            highlight = {
+                on_put = false,
+                on_yank = false,
+            },
+          },
+          keys = {
+            -- { "<leader>p", function() require("telescope").extensions.yank_history.yank_history({ }) end, desc = "Open Yank History" },
+            { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
+            { "p", "<Plug>(YankyPutAfter)", mode = "n", desc = "Put yanked text after cursor" },
+            { "P", "<Plug>(YankyPutBefore)", mode = "n", desc = "Put yanked text before cursor" },
+            { "P", "<Plug>(YankyPutAfter)", mode = "x", desc = "Put yanked text after cursor" }, -- change behavior of 'p' and 'P' in visual mode
+            { "p", "<Plug>(YankyPutBefore)", mode = "x", desc = "Put yanked text before cursor" }, -- whether to yank the pasted text
+            { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after selection" },
+            { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before selection" },
+            { "<c-p>", "<Plug>(YankyPreviousEntry)", desc = "Select previous entry through yank history" },
+            { "<c-n>", "<Plug>(YankyNextEntry)", desc = "Select next entry through yank history" },
+            { "ap", function() require("yanky.textobj").last_put() end, mode = { "o", "x" }, desc = "Last put text object" },
+          },
+        },
+        {"psliwka/vim-smoothie", cond = not vim.g.vscode},
+        {"vim-airline/vim-airline", cond = not vim.g.vscode},
+        {
+            "folke/flash.nvim",
+            event = "VeryLazy",
+            ---@type Flash.Config
+            opts = {},
+            -- stylua: ignore
+            keys = {
+                {"s", mode = {"n", "x", "o"}, function() require("flash").jump() end, desc = "Flash"},
+                {"r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash"},
+                {"<c-s>", mode = {"c"}, function() require("flash").toggle() end, desc = "Toggle Flash Search"}
+            },
+            config = function()
+                require("flash").setup(
+                    {
+                        labels = "asdghklqwertyuiopzxcvbnmfj;",
+                        modes = {
+                            char = {
+                              jump_labels = true
+                            }
+                          }
+                    }
+                )
+            end
+        },
+        {
+            "kylechui/nvim-surround",
+            version = "*",
+            config = function()
+                require("nvim-surround").setup(
+                    {
+                        surrounds = {
+                            ["("] = false,
+                            ["["] = false,
+                            ["{"] = false,
+                            ["<"] = false
+                        },
+                        aliases = {
+                            ["("] = ")",
+                            ["["] = "]",
+                            ["{"] = "}",
+                            ["<"] = ">"
+                        }
+                    }
+                )
+            end
+        },
+        {
+            "gbprod/substitute.nvim",
+            config = function()
+                require("substitute").setup({
+                    on_substitute = require("yanky.integration").substitute(),
+                })
+            end,
+            keys = {
+                {"cx", mode = "n", "<cmd>lua require('substitute.exchange').operator()<cr>"},
+                {"x", mode = "x", "<cmd>lua require('substitute.exchange').visual()<cr>"},
+                -- {"gr", mode = "n", function() require("substitute").operator() end},
+                -- {"gr", mode = "x", function() require("substitute").visual() end},
+            }
+        },
+        {
+            "vscode-neovim/vscode-multi-cursor.nvim",
+            event = "VeryLazy",
+            cond = not (not vim.g.vscode),
+            config = function()
+                require("vscode-multi-cursor").setup {
+                    -- Whether to set default mappings
+                    default_mappings = true,
+                    -- If set to true, only multiple cursors will be created without multiple selections
+                    no_selection = true,
+                    -- move to keys section
+                    vim.keymap.set("n", "<C-f>", "mcigw*<Cmd>nohl<CR>", {remap = true})
+                }
+            end,
+            keys = {
+                {"<C-L>", mode = "n", function() require("vscode-multi-cursor").selectHighlights() end},
+            }
+        }
+})
 
 if not vim.g.vscode then
     vim.cmd [[
@@ -74,62 +149,15 @@ if not vim.g.vscode then
     ]]
 end
 
-
--- hop keybindings
-local hop = require("hop")
-local directions = require("hop.hint").HintDirection
-vim.keymap.set('', 's', function() 
-    vim.api.nvim_command('noh')
-    hop.hint_char2()
-end)
-vim.keymap.set('', 'f', function() 
-    vim.api.nvim_command('noh')
-    hop.hint_char1({ 
-        direction = directions.AFTER_CURSOR, 
-        current_line_only = true 
-    }) 
-end)
-vim.keymap.set('', 'F', function() 
-    vim.api.nvim_command('noh')
-    hop.hint_char1({ 
-        direction = directions.BEFORE_CURSOR, 
-        current_line_only = true 
-    }) 
-end)
-vim.keymap.set("", "t", function() 
-    vim.api.nvim_command('noh')
-    hop.hint_char1({
-        direction = directions.AFTER_CURSOR,
-        current_line_only = true,
-        hint_offset = -1,
-    })
-end)
-vim.keymap.set("", "T", function() 
-    vim.api.nvim_command('noh')
-    hop.hint_char1({
-        direction = directions.AFTER_CURSOR,
-        current_line_only = true,
-        hint_offset = 1,
-    })
-end)
-vim.keymap.set("", "K", function() 
-    vim.api.nvim_command('noh')
-    hop.hint_lines_skip_whitespace() 
-end)
-vim.api.nvim_command('highlight default HopNextKey  guifg=#00dfff gui=bold ctermfg=198 cterm=bold')
-
--- Exchange
-vim.keymap.set("n", "cx", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
-vim.keymap.set("x", "x", "<cmd>lua require('substitute.exchange').visual()<cr>", { noremap = true })
-
+-- vim.api.nvim_command('highlight default HopNextKey  guifg=#00dfff gui=bold ctermfg=198 cterm=bold')
 
 local set = vim.opt
 if not vim.g.vscode then
     set.showmatch = true
     set.hlsearch = true
     set.tabstop = 4
-    set.shiftwidth=4
-    set.softtabstop=4
+    set.shiftwidth = 4
+    set.softtabstop = 4
     set.autoindent = true
     set.smartindent = true
     set.expandtab = true
@@ -148,10 +176,10 @@ if not vim.g.vscode then
     ]]
 
     -- Keybindings
-    vim.keymap.set('i', 'jk', '<Esc>')
-    vim.g.mapleader = ' '
-    vim.keymap.set('n', '<Leader>w', '<Cmd>write<CR>')
-    vim.keymap.set('n', '<Leader>/', function() vim.cmd("noh") end)
+    vim.keymap.set("i", "jk", "<Esc>")
+    vim.g.mapleader = " "
+    vim.keymap.set("n", "<Leader>w", "<Cmd>write<CR>")
+    vim.keymap.set("n", "<Leader>/", function() vim.cmd("noh") end)
 end
 
 set.ignorecase = true
@@ -159,13 +187,10 @@ set.smartcase = true
 set.wildmode = "longest,list"
 set.jumpoptions = set.jumpoptions + "stack"
 set.clipboard = "unnamedplus"
--- set clipboard=unnamed
 -- language en_US
 
-
-
-vim.cmd [[
-if !exists('g:vscode')
+if not vim.g.vscode then
+    vim.cmd [[
     if (empty($TMUX))
       if (has("nvim"))
         "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -178,160 +203,29 @@ if !exists('g:vscode')
         set termguicolors
       endif
     endif
-endif
-]]
-
-
+    ]]
+end
 
 -- Keybindings
-vim.keymap.set('n', 'gb', '<Cmd>Toggle<Cr>')
-vim.keymap.set('n', 'H', '^')
-vim.keymap.set('n', 'L', '$')
-vim.keymap.set('x', 'H', '^')
-vim.keymap.set('x', 'L', '$')
-vim.keymap.set('n', 'gj', 'J')
-vim.keymap.set('n', 'g<', '<Cmd>SidewaysLeft<Cr>')
-vim.keymap.set('n', 'g>', '<Cmd>SidewaysRight<Cr>')
-vim.keymap.set('n', 'gsi', '<Plug>SidewaysArgumentInsertBefore')
-vim.keymap.set('n', 'gsa', '<Plug>SidewaysArgumentAppendAfter')
-vim.keymap.set('n', 'gsI', '<Plug>SidewaysArgumentInsertFirst')
-vim.keymap.set('n', 'gsA', '<Plug>SidewaysArgumentAppendLast')
+vim.keymap.set("n", "gb", "<Cmd>Toggle<Cr>")
+vim.keymap.set("n", "H", "^")
+vim.keymap.set("n", "L", "$")
+vim.keymap.set("x", "H", "^")
+vim.keymap.set("x", "L", "$")
+vim.keymap.set("n", "gj", "J")
+vim.keymap.set("n", "g<", "<Cmd>SidewaysLeft<Cr>")
+vim.keymap.set("n", "g>", "<Cmd>SidewaysRight<Cr>")
+vim.keymap.set("n", "gsi", "<Plug>SidewaysArgumentInsertBefore")
+vim.keymap.set("n", "gsa", "<Plug>SidewaysArgumentAppendAfter")
+vim.keymap.set("n", "gsI", "<Plug>SidewaysArgumentInsertFirst")
+vim.keymap.set("n", "gsA", "<Plug>SidewaysArgumentAppendLast")
+vim.keymap.set({"x", "o"}, "igw", "iW")
+vim.keymap.set({"x", "o"}, "agw", "aW")
+vim.keymap.set({"x", "o"}, "iW", "iw")
+vim.keymap.set({"x", "o"}, "aW", "aw")
 -- revert vscode jumplist to neovim's
 -- vim.keymap.set('n', '<C-o>', '<C-o>')
 
-
-vim.cmd [[
-:command! -bang -nargs=1 -range CycleSubstitute <line1>,<line2>call s:CycleSubstitute("<bang>", <f-args>)
-" no back ref supported; makes no sense
-function! s:CycleSubstitute(bang, repl_arg) range
-    let do_loop = a:bang != "!"
-    let sep = a:repl_arg[0]
-    let fields = split(a:repl_arg, sep)
-    let cleansed_fields = map(copy(fields), 'substitute(v:val, "\\\\[<>]", "", "g")')
-    " build the action to execute
-    let action = '\=s:DoCycleSubst('.do_loop.',' . string(cleansed_fields) . ', "^".submatch(0)."$")'
-    " prepare the :substitute command
-    let args = [join(fields, '\|'), action ]
-    let cmd = a:firstline . ',' . a:lastline . 's'
-          \. sep . join(fields, '\|')
-          \. sep . action
-          \. sep . 'g'
-    " echom cmd
-    " and run it
-    exe cmd
-endfunction
-
-function! s:DoCycleSubst(do_loop, fields, what)
-    let idx = (match(a:fields, a:what) + 1) % len(a:fields)
-    return a:fields[idx]
-endfunction
-]]
-
-
-
--- TODO there is a more contemporary version of this file
--- TODO Also some of it is redundant
--- VSCode
 if vim.g.vscode then
-    vim.cmd [[
-        function! s:split(...) abort
-            let direction = a:1
-            let file = a:2
-            call VSCodeCall(direction == 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
-            if file != ''
-                call VSCodeExtensionNotify('open-file', expand(file), 'all')
-            endif
-        endfunction
-
-        function! s:splitNew(...)
-            let file = a:2
-            call s:split(a:1, file == '' ? '__vscode_new__' : file)
-        endfunction
-
-        function! s:closeOtherEditors()
-            call VSCodeNotify('workbench.action.closeEditorsInOtherGroups')
-            call VSCodeNotify('workbench.action.closeOtherEditors')
-        endfunction
-
-        function! s:manageEditorSize(...)
-            let count = a:1
-            let to = a:2
-            for i in range(1, count ? count : 1)
-                call VSCodeNotify(to == 'increase' ? 'workbench.action.increaseViewSize' : 'workbench.action.decreaseViewSize')
-            endfor
-        endfunction
-
-        function! s:vscodeCommentary(...) abort
-            if !a:0
-                let &operatorfunc = matchstr(expand('<sfile>'), '[^. ]*$')
-                return 'g@'
-            elseif a:0 > 1
-                let [line1, line2] = [a:1, a:2]
-            else
-                let [line1, line2] = [line("'["), line("']")]
-            endif
-
-            call VSCodeCallRange("editor.action.commentLine", line1, line2, 0)
-        endfunction
-
-        function! s:openVSCodeCommandsInVisualMode()
-            normal! gv
-            let visualmode = visualmode()
-            if visualmode == "V"
-                let startLine = line("v")
-                let endLine = line(".")
-                call VSCodeNotifyRange("workbench.action.showCommands", startLine, endLine, 1)
-            else
-                let startPos = getpos("v")
-                let endPos = getpos(".")
-                call VSCodeNotifyRangePos("workbench.action.showCommands", startPos[1], endPos[1], startPos[2], endPos[2], 1)
-            endif
-        endfunction
-
-        function! s:openWhichKeyInVisualMode()
-            normal! gv
-            let visualmode = visualmode()
-            if visualmode == "V"
-                let startLine = line("v")
-                let endLine = line(".")
-                call VSCodeNotifyRange("whichkey.show", startLine, endLine, 1)
-            else
-                let startPos = getpos("v")
-                let endPos = getpos(".")
-                call VSCodeNotifyRangePos("whichkey.show", startPos[1], endPos[1], startPos[2], endPos[2], 1)
-            endif
-        endfunction
-
-
-
-        command! -complete=file -nargs=? Split call <SID>split('h', <q-args>)
-        command! -complete=file -nargs=? Vsplit call <SID>split('v', <q-args>)
-        command! -complete=file -nargs=? New call <SID>split('h', '__vscode_new__')
-        command! -complete=file -nargs=? Vnew call <SID>split('v', '__vscode_new__')
-        command! -bang Only if <q-bang> == '!' | call <SID>closeOtherEditors() | else | call VSCodeNotify('workbench.action.joinAllGroups') | endif
-
-        
-
-
-        nnoremap <silent> <C-w>_ :<C-u>call VSCodeNotify('workbench.action.toggleEditorWidths')<CR>
-
-        " nnoremap <silent> <Space> :call VSCodeNotify('whichkey.show')<CR>
-        xnoremap <silent> <Space> :<C-u>call <SID>openWhichKeyInVisualMode()<CR>
-
-        xnoremap <silent> <C-P> :<C-u>call <SID>openVSCodeCommandsInVisualMode()<CR>
-
-
-        xmap gc  <Plug>VSCodeCommentary
-        nmap gc  <Plug>VSCodeCommentary
-        omap gc  <Plug>VSCodeCommentary
-        nmap gcc <Plug>VSCodeCommentaryLine
-    ]]
-
-
-    -- Better Navigation
-    vim.keymap.set("n", "gr", function() vim.fn.VSCodeNotify('editor.action.goToReferences') end)
-    vim.keymap.set("n", "<Esc>", function() vim.fn.VSCodeNotify('notebook.cell.quitEdit') end)
-
+    vim.keymap.set("n", "gr", function() require("vscode-neovim").call("editor.action.goToReferences") end)
 end
-
-
